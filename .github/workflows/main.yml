@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-      - '_posts/*.md'
+      - '_posts'
 
 jobs:
   build:
