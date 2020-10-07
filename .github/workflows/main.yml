@@ -1,0 +1,34 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '_posts/*.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+    - name: Configure git
+      run: git config --local user.email "shakalaka112358@gmail.com" && git config --local user.name "RockeSingh99"
+    - name: Add tags and categories html
+      run: bash ./tools/init.sh
+    - name: Path configuration
+      run : echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc && echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc && echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc  
+    - name: jekyll bundler install
+      run: gem install jekyll bundler
+    - name: jekyll build
+      run:  jekyll build
+    - name: push to git
+      run: git add . && git commit -m "action completed" 
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
