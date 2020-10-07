@@ -19,7 +19,7 @@ jobs:
     - name: Configure git
       run: git config --local user.email "shakalaka112358@gmail.com" && git config --local user.name "RockeSingh99"
     - name: Add tags and categories html
-      run: bash ./tools/init.sh
+      run: bash tools/init.sh
     - name: Path configuration
       run : echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc && echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc && echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc  
     # - name: jekyll bundler install
