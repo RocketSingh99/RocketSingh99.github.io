@@ -24,6 +24,8 @@ jobs:
       run : echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc && echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc && echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc  
     - name: jekyll bundler install
       run: gem install jekyll bundler
+    - name: jekyll paginate install
+      run:  gem install jekyll-paginate
     - name: jekyll build
       run:  jekyll build
     - name: push to git
